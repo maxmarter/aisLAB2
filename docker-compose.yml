@@ -19,7 +19,7 @@ services:
     networks:
       - arch-network
     ports:
-      - 3360:3306
+      - 3361:3361
     healthcheck:
       test: "/usr/bin/mariadb --user=stud --password=stud --execute \"SHOW DATABASES;\""
       interval: 15s
@@ -28,13 +28,13 @@ services:
     volumes:
       - db-node-ex01-data:/var/lib/mysql
 
-  user_service: 
+  user_service:
     build:
       context: user_service
       dockerfile: Dockerfile
     container_name: user_service
-    
-  
+
+
     environment:
       - DB_HOST=mai-db-node-ex01
       - DB_PORT=3306
@@ -55,8 +55,8 @@ services:
       context: wall_service
       dockerfile: Dockerfile
     container_name: wall_service
-    
-  
+
+
     environment:
       - DB_HOST=mai-db-node-ex01
       - DB_PORT=3306
@@ -76,8 +76,8 @@ services:
       context: message_service
       dockerfile: Dockerfile
     container_name: message_service
-    
-  
+
+
     environment:
       - DB_HOST=mai-db-node-ex01
       - DB_PORT=3306
